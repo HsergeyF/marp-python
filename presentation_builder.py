@@ -33,8 +33,8 @@ class Presentation:
         if "width" in params.keys():
             img_string+=f'width:{params["width"]}'
         if "height" in params.keys():
-            img_string+=f' height:{params["width"]}'
-        return img_string+f']({params["image"]}) \n'
+            img_string+=f' height:{params["height"]}'
+        return img_string+f']({params["image"]})\n'
         
     @staticmethod
     def _build_filter_string(params):

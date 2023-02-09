@@ -25,6 +25,30 @@ class TestPresentationBuilder(unittest.TestCase):
         {'image': 'logo.jpeg', 'is_background': True, 'bg_position': 'left'})
         self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![bg left](logo.jpeg)\n# test \ntest \n")
 
+    def test_image_slide(self):
+        presentation = Presentation() 
+        presentation.add_slide("test", 'test',image_params=
+        {'image': 'logo.jpeg'})
+        self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![](logo.jpeg)\n# test \ntest \n")
+    
+    def test_width_image_slide(self):
+        presentation = Presentation() 
+        presentation.add_slide("test", 'test',image_params=
+        {'image': 'logo.jpeg', 'width':'200px'})
+        self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![width:200px](logo.jpeg)\n# test \ntest \n")
+
+    def test_height_image_slide(self):
+        presentation = Presentation() 
+        presentation.add_slide("test", 'test',image_params=
+        {'image': 'logo.jpeg', 'height':'200px'})
+        self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![ height:200px](logo.jpeg)\n# test \ntest \n")
+
+    def test_width_height_image_slide(self):
+        presentation = Presentation()
+        presentation.add_slide("test", 'test',image_params=
+        {'image': 'logo.jpeg', 'width':'200px', 'height':'200px'})
+        self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![width:200px height:200px](logo.jpeg)\n# test \ntest \n")
+
     def test_filter_image_slide(self):
         presentation = Presentation() 
         presentation.add_slide("test", 'test',image_params=
