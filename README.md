@@ -1,6 +1,10 @@
 # marp-python
 ## Python library for generating Marp presentations. This lib helps to automatically generate presentations with simple builder class. 
 
+For correct work please install marp-cli:
+1. download latetst [binary file](https://github.com/marp-team/marp-cli/releases)
+2. mv marp /usr/local/bin
+
 Example:
 
 ```
@@ -22,6 +26,13 @@ For filter:
 ```
 {
     'image': 'logo.jpeg',
-     'filter': 'blur'
+    'filter': 'blur'
+}
+```
+For image:
+```
+{
+    'image': 'logo.jpeg',
+    'width': '100px'
 }
 ```
