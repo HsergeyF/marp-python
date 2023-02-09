@@ -1,3 +1,4 @@
+import os
 
 class Presentation:
     
@@ -18,31 +19,60 @@ class Presentation:
         for key, value in params.items():
             self._state += f"<!-- {key}: {value} --> \n"
 
+    @staticmethod
+    def _build_bg_string(params):
+        if params['is_background']:
+                    if "split_pct" in params.keys():
+                        return f'![bg {params["bg_position"]}:{params["split_pct"]}]({params["image"]})\n'
+                    else:
+                        return f'![bg {params["bg_position"]}]({params["image"]})\n'
+    
+    @staticmethod
+    def _build_image_string(params):
+        img_string = "![" 
+        if "width" in params.keys():
+            img_string+=f'width:{params["width"]}'
+        if "height" in params.keys():
+            img_string+=f' height:{params["width"]}'
+        return img_string+f']({params["image"]}) \n'
+        
+    @staticmethod
+    def _build_filter_string(params):
+        if "value" in params.keys():
+            return f'![{params["filter"]}:{params["value"]}]({params["image"]}) \n'
+        else:
+            return f'![{params["filter"]}]({params["image"]}) \n'
 
     def _try_set_bg_image(self, params):
         if "is_background" in params.keys():
-                if params['is_background']:
-                    if "split_pct" in params.keys():
-                        self._state += f'![bg {params["bg_position"]}:{params["split_pct"]}]({params["image"]})\n'
-                    else:
-                        self._state += f'![bg {params["bg_position"]}]({params["image"]})\n'
+            self._state += self._build_bg_string(params)
+
     
     def _try_set_img_filter(self, params):
         if "filter" in params.keys():
-            if "value" in params.keys():
-                self._state += f'![{params["filter"]}:{params["value"]}]({params["image"]}) \n'
-            else:
-                self._state += f'![{params["filter"]}]({params["image"]}) \n'
+            self._state += self._build_filter_string(params)
+    
+    def _try_set_img(self, params):
+        set_condition = all(item not in params.keys() for item in ["filter", "is_background"])
+        if "is_background" in params.keys():
+            if params["is_background" ] == True: 
+                set_condition = False
+        if set_condition:
+            self._state += self._build_image_string(params)
 
 
     def _add_image_params(self, params: dict) -> None:
+        if not params:
+            return
         if isinstance(params, dict):
             self._try_set_bg_image(params)
             self._try_set_img_filter(params)
+            self._try_set_img(params)
         elif isinstance(params, list):
             for param in params:
                 self._try_set_bg_image(param)
                 self._try_set_img_filter(param)
+                self._try_set_img(param)
         else:
             raise Exception('Image params is a dict in case of 1 img \
                              and list of dicts in case if there are more than 1 image. \
@@ -65,12 +95,17 @@ class Presentation:
         if len(title)!= 0: self._state += f"# {title} \n"
     
     def _add_text(self, text):
-        if len(text)!= 0: self._state += f" {text} \n"
+        if len(text)!= 0: self._state += f"{text} \n"
 
 
     def _end_slide(self) -> None:
         self._state += " \n--- \n"
 
-    def save(self, path: str) -> None:
+    def save(self, path: str, format: str) -> None:
+        """
+        format: pptx, html, pdf, notes, image
+        """
         with open(path, 'w') as file:
             file.write(self._state)
+        if format != "md": os.system(f"marp --{format} {path}")
+        

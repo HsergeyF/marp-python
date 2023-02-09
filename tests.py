@@ -1,4 +1,6 @@
 import unittest
+import pathlib as pl
+import os
 from presentation_builder import Presentation
 
 class TestPresentationBuilder(unittest.TestCase):
@@ -29,6 +31,22 @@ class TestPresentationBuilder(unittest.TestCase):
         {'image': 'logo.jpeg','filter': 'blur'})
         self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![blur](logo.jpeg) \n# test \ntest \n")
 
+    def test_save_pptx(self):
+        self.save_to_format('pptx')
+
+    def test_save_to_html(self):
+        self.save_to_format('html')
+
+    def test_save_to_pdf(self):
+        self.save_to_format('pdf')
+    
+    def save_to_format(self, format):
+        file_name = f"./test.{format}"
+        presentation = Presentation() 
+        presentation.save(file_name, format)
+        path = pl.Path(file_name)
+        self.assertEqual((str(path), path.is_file()), (str(path), True))
+        os.remove(file_name)
 
     def test_image_slide(self):
         pass
@@ -45,14 +63,6 @@ class TestPresentationBuilder(unittest.TestCase):
     def test_css_style_slide(self):
         pass
 
-    def test_save_slide(self):
-        pass
-
-    def test_save_to_html(self):
-        pass
-
-    def test_save_to_pdf(self):
-        pass
 
 if __name__ == '__main__':
     unittest.main()
