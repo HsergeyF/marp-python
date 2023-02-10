@@ -36,3 +36,9 @@ For image:
     'width': '100px'
 }
 ```
+
+For bullet list divide each bullet with -, * or +. Alternatively you can pass numbered list. Pass text parameter as follows:
+```
+"1. First bullet \n2. Second bullet \n ..."
+"- First bullet \n- Second bullet \n ..."
+```
