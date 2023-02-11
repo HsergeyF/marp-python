@@ -8,7 +8,8 @@ For correct work please install marp-cli:
 Example:
 
 ```
-presentation = Presentation()
+css = open("theme.css", "r").read()
+presentation = Presentation(css = css)
 presentation.add_slide("Optimization 2022", 'Optimization results preview',{'backgroundColor': '#f7d064'}, 
                         {'image': 'logo.jpeg', 'is_background': True, 'bg_position': 'left'})
 presentation.save('example.md')

@@ -4,6 +4,19 @@ import os
 from presentation_builder import Presentation
 
 class TestPresentationBuilder(unittest.TestCase):
+
+    def test_paginated_presentation(self):
+        presentation = Presentation(paginate=True)
+        self.assertEqual(presentation._get_state(),"--- \nmarp: true\npaginate: true\n")
+
+    def test_themed_presentation(self):
+        presentation = Presentation(theme='default')
+        self.assertEqual(presentation._get_state(),"--- \nmarp: true\ntheme: default\n")
+
+    def test_css_presentation(self):
+        presentation = Presentation(css='section:{\nheight:200px;\n}\n')
+        presentation.add_slide(title="", text="")
+        self.assertEqual(presentation._get_state(),"--- \nmarp: true\n \n--- \n\n<style>\nsection:{\nheight:200px;\n}\n\n</style>\n")
     
     def test_presentation_template(self):
         presentation = Presentation()
@@ -81,11 +94,6 @@ class TestPresentationBuilder(unittest.TestCase):
     def test_styled_image_slide(self):
         pass
 
-    def test_list_slide(self):
-        pass
-
-    def test_css_style_slide(self):
-        pass
 
 
 if __name__ == '__main__':

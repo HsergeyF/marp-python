@@ -6,7 +6,8 @@ class Presentation:
 
     _img_actions = {}
 
-    def __init__(self, params: dict = {}) -> None:
+
+    def __init__(self, params: dict = {}, css = "", theme = "", paginate = False) -> None:
         """
         If you prefer to set some params for all slides,
         pass it during initialization and it will apply for the whole
@@ -14,6 +15,12 @@ class Presentation:
         """
         if params:
             self._set_slide_params(params)
+        self._css = css
+        self._is_style_added = False
+        if theme != "":
+            self._state += f"theme: {theme}\n"
+        if paginate:
+            self._state += "paginate: true\n"
 
     def _set_slide_params(self, params: dict) -> None:
         for key, value in params.items():
@@ -78,11 +85,17 @@ class Presentation:
                              and list of dicts in case if there are more than 1 image. \
                              Please provide correrct format of image settings.')
         
+    def _add_style(self):
+        if not self._is_style_added and self._css!= "":
+            self._state += f"\n<style>\n{self._css}\n</style>\n"
+            self._is_style_added = True
+
 
     
     def add_slide(self, title: str, text:str, 
                   params: dict = {}, image_params: dict = {}) -> None:
         self._end_slide()
+        self._add_style()
         self._add_image_params(image_params)
         self._set_slide_params(params)
         self._add_header(title)
