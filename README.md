@@ -14,7 +14,7 @@ css = open("theme.css", "r").read()
 presentation = Presentation(css = css)
 presentation.add_slide("Marp presentation", "Marp presentation preview",{'backgroundColor': '#f7d064'}, 
                         {'image': 'logo.jpeg', 'is_background': True, 'bg_position': 'left'})
-presentation.save('example.pptx')
+presentation.save('example', 'pptx')
 ```
 For bullet list divide each bullet with -, * or +. Alternatively you can pass numbered list. Pass text parameter as follows:
 ```
