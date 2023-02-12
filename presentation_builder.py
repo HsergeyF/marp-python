@@ -130,15 +130,15 @@ class Presentation:
         if set_condition:
             self._state += self._build_image_string(params)
 
-    def save(self, path: str, format: str) -> None:
+    def save(self, file_name: str, format: str) -> None:
         """
         Save presentation to provided format.
         
         Parameters
         ----------
 
-        path: str 
-            Output file path
+        file_name: str 
+            Output file name
 
         format: str
             One of available presentation formats (pptx, html, pdf, notes, image)
@@ -148,9 +148,11 @@ class Presentation:
         None
         """
 
-        with open(path, 'w') as file:
+        with open(f"{file_name}.md", 'w') as file:
             file.write(self._state)
-        if format != "md": os.system(f"marp --{format} {path}")
+        if format != "md": 
+            os.system(f"marp --{format} {file_name}.md")
+            os.remove(f"{file_name}.md")
 
     @staticmethod
     def _build_bg_string(params)->str:

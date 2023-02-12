@@ -7,4 +7,4 @@ if __name__ == "__main__":
     [{'image': 'logo.jpeg', 'is_background': True,
     'bg_position': 'left'},{'image': 'logo.jpeg'}])
     presentation.add_slide("Hello", 'world')
-    presentation.save('example.md', 'html')
+    presentation.save('example', 'html')

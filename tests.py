@@ -103,12 +103,11 @@ class TestPresentationBuilder(unittest.TestCase):
         self.save_to_format('pdf')
     
     def save_to_format(self, format):
-        file_name = f"./test.{format}"
         presentation = Presentation() 
-        presentation.save(file_name, format)
-        path = pl.Path(file_name)
+        presentation.save("test", format)
+        path = pl.Path(f"test.{format}")
         self.assertEqual((str(path), path.is_file()), (str(path), True))
-        os.remove(file_name)
+        os.remove(f"test.{format}")
 
 if __name__ == '__main__':
     unittest.main()

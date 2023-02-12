@@ -37,7 +37,7 @@ For filter:
 | param  | description                                                                             |
 |--------|-----------------------------------------------------------------------------------------|
 | image  | image path or url                                                                       |
-| filter | blur,brightness,contrast,drop-shadow,grayscale,hue-rotate,invert,opacity,saturate,sepia |
+| filter | blur, brightness, contrast, drop-shadow, grayscale, hue-rotate, invert, opacity, saturate,sepia |
 | value  | filter value                                                                            |
 
 For image:
