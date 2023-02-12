@@ -50,6 +50,12 @@ class TestPresentationBuilder(unittest.TestCase):
         {'image': 'logo.jpeg', 'is_background': True, 'bg_position': 'left'})
         self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![bg left](logo.jpeg)\n# test \ntest \n")
 
+    def test_bg_image__sized_slide(self):
+        presentation = Presentation() 
+        presentation.add_slide("test", 'test',image_params=
+        {'image': 'logo.jpeg', 'is_background': True, 'size': 'auto'})
+        self.assertEqual(presentation._get_state(), "--- \nmarp: true\n \n--- \n![bg auto](logo.jpeg)\n# test \ntest \n")
+
     def test_image_slide(self):
         presentation = Presentation() 
         presentation.add_slide("test", 'test',image_params=

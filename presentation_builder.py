@@ -155,10 +155,14 @@ class Presentation:
     @staticmethod
     def _build_bg_string(params)->str:
         if params['is_background']:
-                    if "split_pct" in params.keys():
-                        return f'![bg {params["bg_position"]}:{params["split_pct"]}]({params["image"]})\n'
-                    else:
-                        return f'![bg {params["bg_position"]}]({params["image"]})\n'
+            if "bg_position" in params.keys():  
+                if "split_pct" in params.keys():
+                    return f'![bg {params["bg_position"]}:{params["split_pct"]}]({params["image"]})\n'
+                return f'![bg {params["bg_position"]}]({params["image"]})\n'
+            elif "size" in params.keys():
+                return f'![bg {params["size"]}]({params["image"]})\n'
+            else:
+                raise Exception('Provide one of next properties for correct work: bg_position, size')
     
     @staticmethod
     def _build_image_string(params)->str:

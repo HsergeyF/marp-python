@@ -31,6 +31,7 @@ Example of image params struct:
 | is_background | bool is image background                       |
 | bg_position   | position of background (left, right, vertical) |
 | split_pct     | percent of background that image take          |
+| size          | size of bg (cover, contain, fit, auto, x%)     |
 
 For filter:
 | param  | description                                                                             |
@@ -46,3 +47,4 @@ For image:
 | width  | image width       |
 | height | image height      |
 
+#TODO: add bg sizes
