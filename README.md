@@ -46,5 +46,3 @@ For image:
 | image  | image path or url |
 | width  | image width       |
 | height | image height      |
-
-#TODO: add bg sizes
