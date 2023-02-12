@@ -7,7 +7,6 @@ class Presentation:
 
     _img_actions = {}
 
-    #TODO: test several pictures
     def __init__(self, css = "", theme = "", is_paginate = False) -> None:
         """
         If you prefer to set some params for all slides,

@@ -33,17 +33,15 @@ Example of image params struct:
 | split_pct     | percent of background that image take          |
 
 For filter:
-```
-{
-    'image': 'logo.jpeg',
-    'filter': 'blur'
-}
-```
+| param  | description                                                                             |
+|--------|-----------------------------------------------------------------------------------------|
+| image  | image path or url                                                                       |
+| filter | blur,brightness,contrast,drop-shadow,grayscale,hue-rotate,invert,opacity,saturate,sepia |
+| value  | filter value                                                                            |
 For image:
-```
-{
-    'image': 'logo.jpeg',
-    'width': '100px'
-}
-```
+| param  | description       |
+|--------|-------------------|
+| image  | image path or url |
+| width  | image width       |
+| height | image height      |
 
