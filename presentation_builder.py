@@ -184,8 +184,4 @@ class Presentation:
     
     def _get_state(self) -> str:
         return self._state
-
-
-    
-    
         
