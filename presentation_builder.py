@@ -155,7 +155,7 @@ class Presentation:
             os.remove(f"{file_name}.md")
 
     @staticmethod
-    def _build_bg_string(params)->str:
+    def _build_bg_string(params: dict)->str:
         if params['is_background']:
             if "bg_position" in params.keys():  
                 if "split_pct" in params.keys():
@@ -167,7 +167,7 @@ class Presentation:
                 raise Exception('Provide one of next properties for correct work: bg_position, size')
     
     @staticmethod
-    def _build_image_string(params)->str:
+    def _build_image_string(params: dict)->str:
         img_string = "![" 
         if "width" in params.keys():
             img_string+=f'width:{params["width"]}'
