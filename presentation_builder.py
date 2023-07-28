@@ -176,7 +176,7 @@ class Presentation:
         return img_string+f']({params["image"]})\n'
         
     @staticmethod
-    def _build_filter_string(params)->str:
+    def _build_filter_string(params: dict)->str:
         if "value" in params.keys():
             return f'![{params["filter"]}:{params["value"]}]({params["image"]}) \n'
         else:
